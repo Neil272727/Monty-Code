@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Subsystems.Drivetrain.DrivetrainIOSim;
 import frc.robot.Subsystems.Drivetrain.DrivetrainSubsystem;
 
 public class RobotContainer {
@@ -16,14 +17,14 @@ public class RobotContainer {
 
   public RobotContainer() {
 
-    drivetrainSubsystem = new DrivetrainSubsystem();
+    drivetrainSubsystem = new DrivetrainSubsystem(new DrivetrainIOSim());
 
     configureBindings();
   }
 
   private void configureBindings() {
     drivetrainSubsystem.setDefaultCommand(
-        drivetrainSubsystem.setVoltagesArcadeCommand(
+        drivetrainSubsystem.voltagesArcadeCommand(
             () -> controller.getLeftY(), () -> controller.getRightX()));
   }
 
